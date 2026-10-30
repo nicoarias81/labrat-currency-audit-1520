@@ -1,0 +1,36 @@
+golden fixtures with kind=currency: 3
+
+  Q: My dinner bill is 2,450 Thai baht and 1 US dollar is 36.5 baht. How much is that in dollars, and what is the total with a 10% tip?
+  expected by the test suite: 2,450 Thai ÷ 36.5 = 67.12 US dollars. With a 10% tip: 73.84 US dollars (tip 6.71).
+
+  Q: 1 dollar is worth 0.92 eur: 50 eur
+  expected by the test suite: 50 eur ÷ 0.92 = 54.35 US dollars.
+
+  Q: 1 u.s. dollar equals 150 yen; dinner was 12.000 yen with 10% service
+  expected by the test suite: 12 yen ÷ 150 = 0.08 US dollars.
+
+  Recomputing the same question with the thousands form parsed as a number:
+    as shipped : 12 yen ÷ 150 = 0.08 US dollars
+    with the fix: 12000 yen ÷ 150 = 80.00 US dollars   (12.000 yen = 80.00 USD)
+
+  The three currency fixtures all convert an amount given in the QUOTE currency.
+  Hand-evaluating the other two directions of the same six lines:
+    Q: 1 dollar is worth 0.92 eur: how many eur is 50 dollars?
+      app: 50 dollars ÷ 0.92 = 54.35 US dollars
+      correct: 46.00 eur
+    Q: 1 euro = 1.09 dollars: how many dollars is 50 euros?
+      app: 50 euros ÷ 1.09 = 45.87 euro
+      correct: 54.50 US dollars
+
+registry rows: 387
+verdict=adopted, yet carrying a closed_row and a detail that says closed/not adopted:
+  X-019   closed_row=R57  detail: closed (VG-S2 FAIL: 1 WRONG fire; VG v4 not adopted; VG line CLOSED)
+  X-052   closed_row=R63  detail: closed (NOT ADOPTED: G3 FAIL 45 % < 60 %)
+  X-055   closed_row=R61  detail: closed: NOT ADOPTED as frozen (G3 58.1% < 90%; G5b 4/20 vs 0, pre-existing). The rescue HFU-FIX2
+  X-056   closed_row=R62  detail: closed: NOT ADOPTED. The HFU-FIX family is closed with no further rescue (HFUFIX2.md:5; QUEUE.md
+  X-084   closed_row=R36  detail: closed: no knob adopted, P0 flags unchanged (K1/K2/K4 BROKEN 8/10 items differ, K3 IDENTICAL-NO-
+  X-182   closed_row=R91  detail: **closed: NO (Haiku, dev 180)**, CI excludes the +0.03 LEVER bar; the 1.7B converts the extra de
+
+  published (llms.txt): '387 recorded experiments (215 ended without a gain)'
+  recomputed as published: 215 without a gain, 172 otherwise
+  after fixing the 6 rows: 221 / 166
